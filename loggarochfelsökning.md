@@ -70,3 +70,70 @@ Moderna Linux-system (som Ubuntu, Fedora och Debian) använder ett system som he
 
 **Tips för dina studier:**
 Om du ska felsöka något i Linux framöver; börja alltid med att kolla statusen på tjänsten (fungerar den?), därefter tittar du i loggarna via `journalctl -u [tjänstnamn]` för att hitta felmeddelanden, och avslutningsvis använder du nätverks/disk-kommandona för att hitta den exakta flaskhalsen!
+
+
+Övning & mini-labb om felsökning och logganalys
+
+Del 1: Orientering bland loggfiler
+Öppna en terminal och gå till katalogen där Linux lagrar sina traditionella system loggfiler ( /var/log ), och kolla de olika loggfilerna du kan se där.
+
+Identifiera viktiga loggar:
+
+Lista innehållet i katalogen. 
+Hitta nedan filer
+
+    syslog (messages beroende på distribution)
+    auth.log (eller secure).
+
+
+Läs loggar i realtid:
+
+    Använd kommandot " tail -f syslog " (eller på en valfri loggfil i katalogen).
+
+    Öppna ett nytt terminalfönster och gör något i systemet, t.ex. kör ett sudo-kommando (testa sudo apt update).
+
+    Observera vad som händer i syslog loggen i din andra terminal.
+
+    Sluta läs filen med Ctrl + C.
+
+Du kan utforska andra logg-filer på samma sätt, se andra kataloger för loggar i Ubuntu HÄRLinks to an external site..
+
+Del 2: Modern logganalys med journalctl
+Eftersom moderna Linux-system använder systemdLinks to an external site. (linux service manager) skrivs mycket av logginformationen till den binära journalen (systemd-journaldLinks to an external site.).
+
+Grundläggande visning:
+
+    Kör kommandot " journalctl " för att se "ALLT" som loggats
+
+För att filtrera loggvisning och loggarna testa kör:
+
+    Kör kommandot " journalctl -b " för att se loggar sedan systemet startades.
+    Kör kommandot " journalctl --since "1 hour ago" "
+    Kör kommandot " journalctl -u nginx " för att filtrera loggarna på nginx servicen/tjänsten. ()
+    Eller " journalctl -u NetworkManager  " för att filtrera på tjänsten som hanterar nätverksanslutningar.
+    Du kan också filtrera på ord, testa " journalctl -g "Warning" "
+
+Felprioritering:
+Visa endast loggmeddelanden som har prioritetsnivå "Error" eller högre.
+
+    Kör kommandot " journalctl -p err "
+    Testa att kombinera kommands som vi gått igenom med varandra.
+
+Fråga 1: Hur kan vi se loggmeddelanden med Error eller högre, inom den senaste timmen?
+
+ 
+
+Del 3: Praktiskt felsökningsscenario (Mini-Lab)
+
+Scenario: En användare rapporterar att en tjänst eller applikation inte fungerar som den ska.
+
+    Skapa en felexempel/test-händelse:
+
+    Generera ett eget loggmeddelande i systemet med kommandot:
+    " logger -p daemon.err "FELSÖKNINGSTEST: Tjänsten DatacenterApp kraschade på grund av nätverksfel." "
+
+    Hitta "felet"/test-händelsen:
+
+    Använd journalctl eller leta i /var/log för att hitta meddelandet du nyss skapade.
+
+Fråga 2: Vilket exakt journalctl-kommando/sökning använde du för att snabbt hitta texten "FELSÖKNINGSTEST"?
