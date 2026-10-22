@@ -1,4 +1,5 @@
 # Linux kommandon
+https://mentorsparks.com/displayLessonDeck.html?lessonDeck=19204cf9-2733-410b-af09-2721711a3b64&date=2026-08-27&page=13 
 
 ## Ta reda på var du är
 pwd (Print workning directory): visar sökvägen till mappen du står i just nu
