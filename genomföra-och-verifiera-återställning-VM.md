@@ -30,3 +30,25 @@ Huvudmoment och instruktioner
         Dokumentera den tekniska rutinen för backup och återställning, så att arbetet kan utföras på samma sätt varje gång. Beskriv kort vem i verksamheten som ansvarar, hur backupen kontrolleras och var dokumentationen ska finnas.
 
         Skriv en enkel instruktion för återställning från arkivet, till exempel i 3–5 steg:
+
+
+**Dokumentation av rutinen**
+Teknisk rutin för Backup och Återställning
+
+    Ansvarig: Systemadministratör / IT-ansvarig (eller din studentprofil).
+
+    Kontroll: Säkerhetskopiering sker automatiskt/schemalagt. Kontroll av backup-filernas integritet samt test-återställning utförs månadsvis.
+
+    Plats för dokumentation: IT-avdelningens interna wiki / systemdokumentation på /docs/routines/backup.md.
+
+Instruktion för återställning från arkiv (3–5 steg)
+
+    Identifiera backup-fil: Kontrollera vilken säkerhetskopia som ska återställas i /mnt/backup/ (t.ex. sorterat på datum).
+
+    Kontrollera utrymme: Säkerställ att det finns tillräckligt med diskutrymme på måldisken med df -h.
+
+    Kör återställning: Packa upp valt arkiv till rotkatalogen med kommandot:sudo tar -xvzf /mnt/backup/<FILNAMN>.tar.gz -C /
+
+    Verifiera filer: Kontrollera att filerna återställts till /home/student/viktig_data/ och att innehållet stämmer (cat).
+
+    Logga åtgärden: Dokumentera datum, tid och orsak till återställningen i incidentloggen.
