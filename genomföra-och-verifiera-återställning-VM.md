@@ -13,13 +13,13 @@ Genomför säkerhetskopiering (tar eller rsync)
 
 Skapa ett komprimerat arkiv av katalogen och spara det på vår separata backup-disk (/mnt/backup/)
 
-sudo tar -cvzf /mnt/backup/viktig_data_$(date +%Y%m%m).tar.gz /home/student/viktig_data/
+        sudo tar -cvzf /mnt/backup/viktig_data_$(date +%Y%m%m).tar.gz /home/student/viktig_data/
 
 Simulera incident (Dataförlust)
 
 Radera ursprungskatalogen permanent:
 
-rm -rf /home/student/viktig_data/
+        rm -rf /home/student/viktig_data/
 
 Återställ data & Verifiera integritet
 
@@ -31,7 +31,7 @@ Dokumentera rutinen
 
 Dokumentera den tekniska rutinen för backup och återställning, så att arbetet kan utföras på samma sätt varje gång. Beskriv kort vem i verksamheten som ansvarar, hur backupen kontrolleras och var dokumentationen ska finnas.
 
-        Skriv en enkel instruktion för återställning från arkivet, till exempel i 3–5 steg:
+
 
 
 **Dokumentation av rutinen**
@@ -51,7 +51,9 @@ Identifiera backup-fil: Kontrollera vilken säkerhetskopia som ska återställas
 
 Kontrollera utrymme: Säkerställ att det finns tillräckligt med diskutrymme på måldisken med df -h.
 
-Kör återställning: Packa upp valt arkiv till rotkatalogen med kommandot:sudo tar -xvzf /mnt/backup/<FILNAMN>.tar.gz -C /
+Kör återställning: Packa upp valt arkiv till rotkatalogen med kommandot:
+        
+        sudo tar -xvzf /mnt/backup/<FILNAMN>.tar.gz -C /
 
 Verifiera filer: Kontrollera att filerna återställts till /home/student/viktig_data/ och att innehållet stämmer (cat).
 
